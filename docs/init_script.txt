@@ -1,0 +1,84 @@
+
+1. scaffold 创建基础信息
+rails generate scaffold volunteer  cell_phone:string:uniq  name:string:index mail:boolean \
+birthday:datetime id_card_num:string:uniq  address:string belief_start_at:datetime is_baptized:boolean baptized_day:datetime join_at:datetime quit_at:datetime skills:string
+
+rails generate scaffold group \
+name:string:uniq \
+remark:text \
+start_at:datetime \
+finish_at:datetime
+
+
+rails generate scaffold volunteer_group_map \
+group_id:integer \
+volunteer_id:integer \
+join_at:datetime \
+is_leader:boolean
+
+CREATE TABLE `volunteer_group_maps` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `volunteer_id` int(11) NOT NULL,
+  `join_at` datetime DEFAULT NULL COMMENT '加入小组时间',
+  `is_leader` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否组长',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_id` (`group_id`,`volunteer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='义工与小组对应关系，只记录最新的，老数据放在历史表中';
+
+rails generate scaffold volunteer_group_map_history \
+group_id:integer \
+volunteer_id:integer \
+join_at:datetime \
+quit_at:datetime \
+is_leader:boolean
+
+CREATE TABLE `volunteer_group_map_histories` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `volunteer_id` int(11) NOT NULL,
+  `join_at` datetime NOT NULL COMMENT '加入小组时间',
+  `quit_at` datetime NOT NULL COMMENT '退出小组时间',
+  `is_leader` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否组长',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_id` (`group_id`,`volunteer_id`,`join_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='义工与小组对应关系历史表';
+
+rails generate scaffold activity \
+name:string \
+remark:text \
+start_at:datetime \
+finish_at:datetime -f
+
+CREATE TABLE `activities` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(36) NOT NULL DEFAULT '' COMMENT '活动名称，如防暑降温',
+  `remark` varchar(256) DEFAULT NULL COMMENT '活动说明信息',
+  `start_at` datetime DEFAULT NULL COMMENT '活动开始时间',
+  `finish_at` datetime DEFAULT NULL COMMENT '活动结束时间',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='活动表，比如物品发放，防暑降温费发放等';
+
+rails generate scaffold activity_item \
+activity_id:integer \
+volunteer_id:integer \
+is_finish:boolean \
+remark:text
+
+CREATE TABLE `activity_items` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `activity_id` int(11) NOT NULL,
+  `volunteer_id` int(11) NOT NULL,
+  `is_finish` tinyint(1) NOT NULL DEFAULT '0',
+  `remark` varchar(32) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `activity_id` (`activity_id`,`volunteer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='活动条目，记录活动中的每一个参与义工，活动的完成情况';

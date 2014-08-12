@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title 崇文门堂-义工信息系统
+    = stylesheet_link_tag    "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .clearfix{:style => "background: #0088FF; color:#fff;padding:5px;margin:0"}
+      %h4.pull-left{:style => "padding:0;margin:0px;"}
+        %a{:href => "/"} 崇文门堂-义工信息系统
+      .center-block{:style => "padding:0;margin:0px;"}
+        = link_to '义工信息', volunteers_path
+        = link_to '小组信息', groups_path
+        = link_to '活动信息', activities_path
+      %p.pull-right{:style => "padding:0;margin:0px;"}
+        %a{:href => "/certs/mine"}
+          %span.glyphicon.glyphicon-cog
+          %span zdcin@qq.com
+        %a{"data-method" => "delete", :href => "/customers/sign_out", :rel => "nofollow"} 登出
+    %div.container
+      = yield

@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cell_phone: MyString
+  name: MyString
+  mail: false
+  birthday: 2014-08-10 12:31:54
+  id_card_num: MyString
+  address: MyString
+  belief_start_at: 2014-08-10 12:31:54
+  is_baptized: false
+  baptized_day: 2014-08-10 12:31:54
+  join_at: 2014-08-10 12:31:54
+  quit_at: 2014-08-10 12:31:54
+  skills: MyString
+
+two:
+  cell_phone: MyString
+  name: MyString
+  mail: false
+  birthday: 2014-08-10 12:31:54
+  id_card_num: MyString
+  address: MyString
+  belief_start_at: 2014-08-10 12:31:54
+  is_baptized: false
+  baptized_day: 2014-08-10 12:31:54
+  join_at: 2014-08-10 12:31:54
+  quit_at: 2014-08-10 12:31:54
+  skills: MyString

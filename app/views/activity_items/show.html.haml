@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong Activity:
+  = @activity_item.activity_id
+%p
+  %strong Volunteer:
+  = @activity_item.volunteer_id
+%p
+  %strong Is finish:
+  = @activity_item.is_finish
+%p
+  %strong Remark:
+  = @activity_item.remark
+= link_to 'Edit', edit_activity_item_path(@activity_item)
+|
+\#{link_to 'Back', activity_items_path}

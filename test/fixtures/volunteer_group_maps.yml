@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group_id: 1
+  volunteer_id: 1
+  join_at: 2014-08-10 12:47:42
+  is_leader: false
+
+two:
+  group_id: 1
+  volunteer_id: 1
+  join_at: 2014-08-10 12:47:42
+  is_leader: false

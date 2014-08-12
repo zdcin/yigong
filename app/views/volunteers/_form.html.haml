@@ -1,0 +1,59 @@
+= form_for(@volunteer) do |f|
+  - if @volunteer.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@volunteer.errors.count, "error")
+        prohibited this volunteer from being saved:
+      %ul
+        - @volunteer.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :cell_phone
+    %br/
+    = f.text_field :cell_phone
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  .field
+    = f.label :mail
+    %br/
+    = f.check_box :mail
+  .field
+    = f.label :birthday
+    %br/
+    = f.date_select :birthday, include_blank: true
+  .field
+    = f.label :id_card_num
+    %br/
+    = f.text_field :id_card_num
+  .field
+    = f.label :address
+    %br/
+    = f.text_field :address
+  .field
+    = f.label :belief_start_at
+    %br/
+    = f.date_select :belief_start_at, include_blank: true
+  .field
+    = f.label :is_baptized
+    %br/
+    = f.check_box :is_baptized
+  .field
+    = f.label :baptized_day
+    %br/
+    = f.date_select :baptized_day, include_blank: true
+  .field
+    = f.label :join_at
+    %br/
+    = f.date_select :join_at
+  .field
+    = f.label :quit_at
+    %br/
+    = f.date_select :quit_at, include_blank: true
+  .field
+    = f.label :skills
+    %br/
+    = f.text_field :skills
+  .actions
+    = f.submit

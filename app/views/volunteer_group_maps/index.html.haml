@@ -1,0 +1,23 @@
+%h1 Listing volunteer_group_maps
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Group
+      %th Volunteer
+      %th Join at
+      %th Is leader
+      %th
+      %th
+      %th
+  %tbody
+    - @volunteer_group_maps.each do |volunteer_group_map|
+      %tr
+        %td= volunteer_group_map.group_id
+        %td= volunteer_group_map.volunteer_id
+        %td= volunteer_group_map.join_at
+        %td= volunteer_group_map.is_leader
+        %td= link_to 'Show', volunteer_group_map
+        %td= link_to 'Edit', edit_volunteer_group_map_path(volunteer_group_map)
+        %td= link_to 'Destroy', volunteer_group_map, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Volunteer group map', new_volunteer_group_map_path

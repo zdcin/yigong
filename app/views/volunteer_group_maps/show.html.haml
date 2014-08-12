@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong Group:
+  = @volunteer_group_map.group_id
+%p
+  %strong Volunteer:
+  = @volunteer_group_map.volunteer_id
+%p
+  %strong Join at:
+  = @volunteer_group_map.join_at
+%p
+  %strong Is leader:
+  = @volunteer_group_map.is_leader
+= link_to 'Edit', edit_volunteer_group_map_path(@volunteer_group_map)
+|
+\#{link_to 'Back', volunteer_group_maps_path}

@@ -1,0 +1,40 @@
+%p#notice= notice
+%p
+  %strong Cell phone:
+  = @volunteer.cell_phone
+%p
+  %strong Name:
+  = @volunteer.name
+%p
+  %strong Mail:
+  = @volunteer.mail
+%p
+  %strong Birthday:
+  = @volunteer.birthday
+%p
+  %strong Id card num:
+  = @volunteer.id_card_num
+%p
+  %strong Address:
+  = @volunteer.address
+%p
+  %strong Belief start at:
+  = @volunteer.belief_start_at
+%p
+  %strong Is baptized:
+  = @volunteer.is_baptized
+%p
+  %strong Baptized day:
+  = @volunteer.baptized_day
+%p
+  %strong Join at:
+  = @volunteer.join_at
+%p
+  %strong Quit at:
+  = @volunteer.quit_at
+%p
+  %strong Skills:
+  = @volunteer.skills
+= link_to 'Edit', edit_volunteer_path(@volunteer)
+|
+\#{link_to 'Back', volunteers_path}

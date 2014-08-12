@@ -1,0 +1,37 @@
+%h1
+  %span.label.label-default= @group.name
+  %span 小组的义工列表
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th Cell phone
+      %th join_at
+      %th Mail
+      %th Birthday
+      %th Id card num
+      %th Address
+      %th Skills
+      %th
+      %th 查看分组
+      %th 设为组长
+      %th 从小组删除
+  %tbody
+    - @list.each do |item|
+      %tr
+        %td= item[1].name
+        %td= item[1].cell_phone
+        %td= item[0].join_at
+        %td= item[1].mail
+        %td= item[1].birthday
+        %td= item[1].id_card_num
+        %td= item[1].address
+        %td= item[1].skills
+        %td= link_to 'Show', item[1]
+        %td= link_to '查看分组', show_group_by_volunteer_volunteer_group_maps_path(volunteer_id: item[1].id), class: "btn btn-info"
+        - if item[0].is_leader
+          %td= link_to '组长', set_as_group_leader_volunteer_group_maps_path(id: item[0].id, is_leader: false), method: :post, data: { confirm: '确定要取消组长吗?' }, class: 'btn btn-danger'
+        - else
+          %td= link_to '设为组长', set_as_group_leader_volunteer_group_maps_path(id: item[0].id, is_leader: true), method: :post, data: { confirm: '确定要设为组长吗?' }, class: 'btn btn-default'
+        %td= link_to '从该组删除', remove_volunteer_for_group_volunteer_group_maps_path(id: item[0].id), method: :delete, class: 'btn btn-warning'

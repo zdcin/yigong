@@ -1,0 +1,27 @@
+= form_for(@volunteer_group_map) do |f|
+  - if @volunteer_group_map.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@volunteer_group_map.errors.count, "error")
+        prohibited this volunteer_group_map from being saved:
+      %ul
+        - @volunteer_group_map.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :group_id
+    %br/
+    = f.number_field :group_id
+  .field
+    = f.label :volunteer_id
+    %br/
+    = f.number_field :volunteer_id
+  .field
+    = f.label :join_at
+    %br/
+    = f.date_select :join_at
+  .field
+    = f.label :is_leader
+    %br/
+    = f.check_box :is_leader
+  .actions
+    = f.submit

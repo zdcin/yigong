@@ -1,0 +1,40 @@
+%h3 义工信息
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th 姓名
+      %th 电话
+      %th 性别
+      %th 出生日期
+      %th 身份证号
+      %th 地址
+      %th 信教于
+      %th 受洗于
+      %th 加入于
+      %th 退出于
+      %th 技能
+      %th{style: 'width:130px;'}
+      %th 查看分组
+  %tbody
+    - @volunteers.each do |volunteer|
+      %tr
+        %td= volunteer.name
+        %td= volunteer.cell_phone
+        %td= volunteer.mail
+        %td= volunteer.birthday
+        %td= volunteer.id_card_num
+        %td= volunteer.address
+        %td= volunteer.belief_start_at
+        %td= volunteer.baptized_day
+        %td= volunteer.join_at
+        %td= volunteer.quit_at
+        %td= volunteer.skills
+        %td
+          .btn-group
+            = link_to '查看', volunteer, class: "btn btn-info btn-xs"
+            = link_to '编辑', edit_volunteer_path(volunteer), class: "btn btn-warning btn-xs"
+            = link_to '删除', volunteer, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger  btn-xs"
+        %td= link_to '查看分组', show_group_by_volunteer_volunteer_group_maps_path(volunteer_id: volunteer.id), class: "btn btn-info btn-xs"
+%br/
+= link_to '输入新义工信息', new_volunteer_path, class: "btn btn-success"

@@ -1,0 +1,27 @@
+%h1 Listing groups
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th Remark
+      %th Start at
+      %th Finish at
+      %th
+      %th
+      %th
+      %th 查看成员
+  %tbody
+    - @groups.each do |group|
+      %tr
+        %td= group.name
+        %td= group.remark
+        %td= group.start_at
+        %td= group.finish_at
+        %td= link_to 'Show', group
+        %td= link_to 'Edit', edit_group_path(group)
+        %td= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to '查看成员', show_volunteer_by_group_volunteer_group_maps_path(group_id: group.id), class: "btn btn-primary"
+
+= will_paginate @groups, renderer: BootstrapPagination::Rails
+%br/
+= link_to 'New Group', new_group_path

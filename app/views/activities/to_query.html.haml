@@ -1,0 +1,14 @@
+%h1 Listing activities
+
+.well#add_new_group
+  = form_tag add_groups_for_volunteer_volunteer_group_maps_path do
+    = hidden_field_tag 'volunteer_id', @volunteer.id
+    - @not_in_groups.each_with_index do |item, index|
+      .col-xs-2
+        = check_box_tag "groups_#{item.id}", item.id
+        %label
+          = item.name
+    %h6 &nbsp;
+    .center-block
+      = submit_tag '确定添加', class: "btn btn-info"
+    %br/

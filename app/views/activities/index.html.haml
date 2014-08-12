@@ -1,0 +1,25 @@
+%h1 Listing activities
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th Remark
+      %th Start at
+      %th Finish at
+      %th
+      %th
+      %th
+      %th 查看所有参与者
+  %tbody
+    - @activities.each do |activity|
+      %tr
+        %td= activity.name
+        %td= activity.remark
+        %td= activity.start_at
+        %td= activity.finish_at
+        %td= link_to 'Show', activity
+        %td= link_to 'Edit', edit_activity_path(activity)
+        %td= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Activity', new_activity_path

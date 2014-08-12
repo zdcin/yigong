@@ -1,0 +1,47 @@
+%h1
+  %span.label.label-default= @volunteer.name
+  %span 义工的所属分组
+%table.table.table-bordered
+  %thead
+    %tr
+      %th 组名
+      %th Remark
+      %th join_at
+      %th 小组详情
+      %th 查看成员
+      %th 不再属于该组
+  %tbody
+    - @list.each do |item|
+      %tr
+        %td= item[1].name
+        %td= item[1].remark
+        %td= item[0].join_at
+        %td= link_to '详情', item[1], class: "btn btn-info"
+        %td= link_to '查看成员', show_volunteer_by_group_volunteer_group_maps_path(group_id: item[1].id), class: "btn btn-info"
+        %td= link_to '从该组删除', remove_group_for_volunteer_volunteer_group_maps_path(id: item[0].id), method: :delete, class: 'btn btn-warning'
+%br/
+
+.well#add_new_group{:style => "display: none"}
+  = form_tag add_groups_for_volunteer_volunteer_group_maps_path do
+    = hidden_field_tag 'volunteer_id', @volunteer.id
+    - @not_in_groups.each_with_index do |item, index|
+      .col-xs-2
+        %label.checkbox-inline
+          = check_box_tag "groups_#{item.id}", item.id
+          = item.name
+    %h6 &nbsp;
+    .center-block
+      = submit_tag '确定添加', class: "btn btn-info"
+    
+
+%a.btn.btn-success{:href => "javascript:void(0)", :onclick => "show_add_new_group_div()"} 添加所属组
+
+:javascript
+  function show_add_new_group_div(){
+    document.getElementById("add_new_group").style.display="";
+    //alert(document.getElementById("div").style.display)
+  }
+  function hidden(){
+    document.getElementById("div").style.display="none";
+    //alert(document.getElementById("div").style.display)
+  }

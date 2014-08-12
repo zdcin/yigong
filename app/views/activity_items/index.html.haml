@@ -1,0 +1,23 @@
+%h1 Listing activity_items
+%table.table.table-bordered
+  %thead
+    %tr
+      %th Activity
+      %th Volunteer
+      %th Is finish
+      %th Remark
+      %th
+      %th
+      %th
+  %tbody
+    - @activity_items.each do |activity_item|
+      %tr
+        %td= activity_item.activity_id
+        %td= activity_item.volunteer_id
+        %td= activity_item.is_finish
+        %td= activity_item.remark
+        %td= link_to 'Show', activity_item
+        %td= link_to 'Edit', edit_activity_item_path(activity_item)
+        %td= link_to 'Destroy', activity_item, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Activity item', new_activity_item_path
